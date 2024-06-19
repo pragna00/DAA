@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct Node {
+    int data;
+    struct Node* next;
+} Node;
+Node* createNode(int data) {
+    Node* newNode = (Node*)malloc(sizeof(Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
+}
+Node* addNumbers(Node* num1, Node* num2) {
+    Node* result = NULL;
+    Node* current = NULL;
+    int carry = 0;
+    while (num1!= NULL || num2!= NULL || carry!= 0) {
+        int sum = (num1!= NULL? num1->data : 0) + (num2!= NULL? num2->data : 0) + carry;
+        carry = sum / 10;
+        int digit = sum % 10;
+        Node* newNode = createNode(digit);
+        if (result == NULL) {
+            result = newNode;
+            current = result;
+        } else {
+            current->next = newNode;
+            current = current->next;
+        }
+        if (num1!= NULL) num1 = num1->next;
+        if (num2!= NULL) num2 = num2->next;
+    }
+    return result;
+}
+void printList(Node* head) {
+    while (head!= NULL) {
+        printf("%d", head->data);
+        head = head->next;
+    }
+    printf("\n");
+}
+int main() {
+    Node* num1 = createNode(2);
+    num1->next = createNode(4);
+    num1->next->next = createNode(3);
+    Node* num2 = createNode(5);
+    num2->next = createNode(6);
+    num2->next->next = createNode(4);
+    Node* result = addNumbers(num1, num2);
+    printf("Number 1: ");
+    printList(num1);
+    printf("Number 2: ");
+    printList(num2);
+    printf("Result: ");
+    printList(result);
+    return 0;
+}

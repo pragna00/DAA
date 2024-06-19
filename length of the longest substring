@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <string.h>
+int lengthOfLongestSubstring(char *s) 
+{
+    int len = strlen(s);
+    int max_len = 0;
+    int start = 0;
+    int char_index[256]; 
+    memset(char_index, -1, sizeof(char_index));
+    for (int i = 0; i < len; i++) {
+        if (char_index[(int)s[i]]!= -1 && char_index[(int)s[i]] >= start)
+		 {
+            start = char_index[(int)s[i]] + 1;
+        }
+        char_index[(int)s[i]] = i;
+        max_len = max_len > i - start + 1? max_len : i - start + 1;
+    }
+    return max_len;
+}
+int main()
+ {
+    char s[] = "pwwekw";
+    int len = lengthOfLongestSubstring(s);
+    printf("Length of longest substring without repeating characters: %d\n", len);
+    return 0;
+}

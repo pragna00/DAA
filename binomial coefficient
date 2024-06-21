@@ -1,0 +1,22 @@
+    }
+    return cost[0][n - 1];
+}
+int main() {
+    int keys[] = {10, 12, 20};
+    int freq[] = {34, 8, 50};
+    int n = sizeof(keys) / sizeof(keys[0]);
+    printf("Cost of Optimal BST is %d\n", optimalBST(keys, freq, n));
+    return 0;
+}
+Output:
+Cost of Optimal BST is 142
+    }
+    return C[n][k];
+}
+int main() {
+    int n = 5, k = 2;
+    printf("The binomial coefficient C(%d, %d) is %d\n", n, k, binomialCoeff(n, k));
+    return 0;
+}
+Output:
+The binomial coefficient C(5, 2) is 10

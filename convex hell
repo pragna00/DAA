@@ -1,0 +1,42 @@
+convex hell in brute force 
+#include <stdio.h>
+struct Point {
+    int x, y;
+};
+int orientation(struct Point a, struct Point b, struct Point c) {
+    int val = (b.y - a.y) * (c.x - b.x) - (b.x - a.x) * (c.y - b.y);
+    return (val == 0) ? 0 : (val > 0) ? 1 : 2;
+}
+void convexHull(struct Point points[], int n) {
+    if (n < 3) return;
+    printf("The points in the Convex Hull are:\n");
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            int count = 0;
+            for (int k = 0; k < n; k++) {
+                if (k != i && k != j) {
+                    int o = orientation(points[i], points[j], points[k]);
+                    if (o == 2) {
+                        count = 1;
+                        break;
+                    }
+                }
+            }
+            if (count == 0) {
+                printf("(%d, %d)\n", points[i].x, points[i].y);
+                printf("(%d, %d)\n", points[j].x, points[j].y);
+            }
+        }
+    }
+}
+int main() {
+    struct Point points[] = {{0, 3}, {2, 2}, {1, 1}, {2, 1}, {3, 0}, {0, 0}, {3, 3}};
+    int n = sizeof(points) / sizeof(points[0]);
+    convexHull(points, n);
+}
+Output:
+The points in the Convex Hull are:
+(0, 3)
+(3, 3)
+(3, 0)
+(0, 0)

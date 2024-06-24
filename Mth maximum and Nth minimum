@@ -1,0 +1,43 @@
+#include <stdio.h>
+void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+void selection_sort(int arr[], int n) {
+    int i, j, max_idx;
+    for (i = 0; i < n - 1; i++) {
+        max_idx = i;
+        for (j = i + 1; j < n; j++) {
+            if (arr[j] > arr[max_idx]) {
+                max_idx = j;
+            }
+        }
+        swap(&arr[max_idx], &arr[i]);
+    }
+}
+void find_mth_max_nth_min(int arr[], int n, int m, int n_min) {
+    int i;
+    selection_sort(arr, n);
+    int mth_max = arr[m - 1];
+    int nth_min = arr[n_min - 1];
+    int sum = mth_max + nth_min;
+    int diff = mth_max - nth_min;
+    printf("Mth maximum number: %d\n", mth_max);
+    printf("Nth minimum number: %d\n", nth_min);
+    printf("Sum of Mth maximum and Nth minimum: %d\n", sum);
+    printf("Difference of Mth maximum and Nth minimum: %d\n", diff);
+}
+int main() {
+    int arr[] = {-12,-78,-35,-42,-85};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int m = 3;
+    int n_min = 3;
+    find_mth_max_nth_min(arr, n, m, n_min);
+    return 0;
+}
+OUTPUT:
+Mth maximum number: -42
+Nth minimum number: -42
+Sum of Mth maximum and Nth minimum: -84
+Difference of Mth maximum and Nth minimum: 0

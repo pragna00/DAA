@@ -1,0 +1,31 @@
+#include <stdio.h>
+int binary_search(int nums[], int target, int left, int right) {
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (nums[mid] == target) {
+            return mid;
+        } else if (nums[mid] < target) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    return -1; 
+}
+int search(int nums[], int numsSize, int target) {
+    return binary_search(nums, target, 0, numsSize - 1);
+}
+int main() {
+    int nums[] = {45,4,23,-11,20,5,10,50};
+    int numsSize = sizeof(nums) / sizeof(nums[0]);
+    int target = 5;
+    int result = search(nums, numsSize, target);
+    if (result!= -1) {
+        printf("Target found at index %d\n", result);
+    } else {
+        printf("Target not found\n");
+    }
+    return 0;
+}
+OUTPUT:
+Target found at index 5b

@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <math.h>
+int karatsuba(int x, int y) {
+    if (x < 10 || y < 10) return x * y;
+    int n = fmax((int)(log10(x) + 1), (int)(log10(y) + 1));
+    int m = (int)ceil(n / 2.0);
+    int p = (int)pow(10, m);
+    int a = x / p, b = x % p, c = y / p, d = y % p;
+    int ac = karatsuba(a, c);
+    int bd = karatsuba(b, d);
+    int ad_bc = karatsuba(a + b, c + d) - ac - bd;
+    return ac * (int)pow(10, 2 * m) + ad_bc * (int)pow(10, m) + bd;
+}
+int main() {
+    int x = 1234, y = 5678;
+    printf("Result: %d\n", karatsuba(x, y));
+    return 0;
+}
+OUTPUT:
+Result: 7006652

@@ -1,0 +1,68 @@
+#include <stdio.h>
+void backtrack(int arr[], int n, int sum, int target, int index, int current_sum, int subset[]) {
+    if (current_sum == target) {
+        printf("Subset found: ");
+        for (int i = 0; i < index; i++) {
+            printf("%d ", subset[i]);
+        }
+        printf("\n");
+        return;
+    }
+    if (current_sum > target) {
+        return;
+    }
+    for (int i = 0; i < n; i++) {
+        subset[index] = arr[i];
+        backtrack(arr, n, sum, target, index + 1, current_sum + arr[i], subset);
+    }
+}
+void sum_of_subsets(int arr[], int n, int target) {
+    int subset[n];
+    backtrack(arr, n, 0, target, 0, 0, subset);
+}
+int main() {
+    int arr[] = {3, 9, 8, 4, 5, 7};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int target = 15;
+    sum_of_subsets(arr, n, target);
+    return 0;
+}
+OUTPUT:
+Subset found: 3 3 3 3 3 
+Subset found: 3 3 9 
+Subset found: 3 3 4 5 
+Subset found: 3 3 5 4 
+Subset found: 3 9 3 
+Subset found: 3 8 4 
+Subset found: 3 4 3 5 
+Subset found: 3 4 8 
+Subset found: 3 4 4 4 
+Subset found: 3 4 5 3 
+Subset found: 3 5 3 4 
+Subset found: 3 5 4 3 
+Subset found: 3 5 7 
+Subset found: 3 7 5 
+Subset found: 9 3 3 
+Subset found: 8 3 4 
+Subset found: 8 4 3 
+Subset found: 8 7 
+Subset found: 4 3 3 5 
+Subset found: 4 3 8 
+Subset found: 4 3 4 4 
+Subset found: 4 3 5 3 
+Subset found: 4 8 3 
+Subset found: 4 4 3 4 
+Subset found: 4 4 4 3 
+Subset found: 4 4 7 
+Subset found: 4 5 3 3 
+Subset found: 4 7 4 
+Subset found: 5 3 3 4 
+Subset found: 5 3 4 3 
+Subset found: 5 3 7 
+Subset found: 5 4 3 3 
+Subset found: 5 5 5 
+Subset found: 5 7 3 
+Subset found: 7 3 5 
+Subset found: 7 8 
+Subset found: 7 4 4 
+Subset found: 7 5 3 

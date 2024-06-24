@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <time.h>
+int linearSearch(int arr[], int n, int target) {
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == target) {
+            return i;
+        }
+    }
+    return -1;
+}
+int main() {
+    int arr[] = {4, 2, 7, 1, 3, 9, 6, 5, 8};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int target = 5;
+    clock_t start, end;
+    double cpu_time_used;
+    start = clock();
+    int result = linearSearch(arr, n, target);
+    end = clock();
+    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+    if (result != -1) {
+        printf("Element found at index %d\n", result);
+    } else {
+        printf("Element not found\n");
+    }
+    printf("Time taken: %f seconds\n", cpu_time_used);
+    return 0;
+}
+OUTPUT:
+Element found at index 7
+Time taken: 0.000001 seconds

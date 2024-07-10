@@ -1,0 +1,21 @@
+def is_feasible(items, weights, capacity):
+    """
+    Check if the total weight of the selected items exceeds the knapsack capacity.
+
+    Args:
+        items (list): A list of selected items, represented by their indices.
+        weights (list): A list of weights corresponding to each item.
+        capacity (int): The knapsack capacity.
+
+    Returns:
+        bool: True if the total weight does not exceed the capacity, False otherwise.
+    """
+    total_weight = sum(weights[i] for i in items)
+    return total_weight <= capacity
+items = [0, 1, 2]  # Select items at indices 0, 1, and 2
+weights = [10, 20, 30, 40, 50]  # Weights of each item
+capacity = 60  # Knapsack capacity
+if is_feasible(items, weights, capacity):
+    print("The selection is feasible.")
+else:
+    print("The selection exceeds the knapsack capacity.")

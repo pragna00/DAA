@@ -1,0 +1,18 @@
+import heapq
+def k_closest(points, k):
+    """
+    Find the k closest points to the origin (0, 0) in a given array of points.
+    Args:
+        points (list): A list of points, where each point is a list of two integers [xi, yi].
+        k (int): The number of closest points to find.
+    Returns:
+        list: A list of the k closest points to the origin.
+    """
+    distances = [(x**2 + y**2, (x, y)) for x, y in points]
+    closest_points = heapq.nsmallest(k, distances)
+    return [point for _, point in closest_points]
+points = [[3, 3], [5, -1], [-2, 4], [0, 0], [3, 4], [1, 1], [2, 3], [4, 2]]
+k = 3
+print("Original points:", points)
+closest_points = k_closest(points, k)
+print("K closest points:", closest_points)

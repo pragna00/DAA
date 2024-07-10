@@ -1,0 +1,11 @@
+def sum_of_squares_of_distinct_counts(nums):
+    n = len(nums)
+    res = 0
+    for i in range(n):
+        count = set()
+        for j in range(i, n):
+            count.add(nums[j])
+            res += len(count) ** 2
+    return res
+outpt:
+[2,1]

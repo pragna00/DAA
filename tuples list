@@ -1,0 +1,31 @@
+from collections import defaultdict
+def count_zero_tuples(A, B, C, D):
+    """
+    Compute the number of tuples (i, j, k, l) such that A[i] + B[j] + C[k] + D[l] is zero.
+    Args:
+        A (list): A list of integer values.
+        B (list): A list of integer values.
+        C (list): A list of integer values.
+        D (list): A list of integer values.
+    Returns:
+        int: The number of tuples (i, j, k, l) such that A[i] + B[j] + C[k] + D[l] is zero.
+    """
+    AB_sum_freq = defaultdict(int)
+    for a in A:
+        for b in B:
+            AB_sum_freq[a + b] += 1
+    CD_sum_freq = defaultdict(int)
+    for c in C:
+        for d in D:
+            CD_sum_freq[-(c + d)] += 1
+    count = 0
+    for sum_ab, freq_ab in AB_sum_freq.items():
+        if sum_ab in CD_sum_freq:
+            count += freq_ab * CD_sum_freq[sum_ab]
+    
+    return count
+A = [1, 2, 3]
+B = [4, 5, 6]
+C = [7, 8, 9]
+D = [-10, -11, -12]
+print("Number of zero tuples:", count_zero_tuples(A, B, C, D))

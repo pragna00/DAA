@@ -1,0 +1,13 @@
+def find_max_min(arr):
+    """
+    Find the maximum and minimum values in a sorted array.
+    Args:
+        arr (list): A sorted list of integers.
+    Returns:
+        tuple: A tuple containing the minimum and maximum values.
+    """
+    return min(arr), max(arr)
+arr = [2, 4, 6, 8, 10, 12, 14, 18]
+min_val, max_val = find_max_min(arr)
+print("Minimum value:", min_val)
+print("Maximum value:", max_val)

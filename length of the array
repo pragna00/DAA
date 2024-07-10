@@ -1,0 +1,16 @@
+def count_pairs_with_divisible_product(nums, k):
+    count = 0
+    num_counts = {}
+    for num in nums:
+        if num in num_counts:
+            num_counts[num] += 1
+        else:
+            num_counts[num] = 1
+    for num, freq in num_counts.items():
+        if num == 0:
+            count += freq * (freq - 1) // 2
+        else:
+            for i in range(1, k):
+                if (num * i) % k == 0 and i in num_counts:
+                    count += freq * num_counts[i]
+    return count

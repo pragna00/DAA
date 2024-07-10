@@ -1,0 +1,19 @@
+def length_of_longest_substring(s):
+    """
+    Find the length of the longest substring without repeating characters.
+    Args:
+        s (str): The input string.
+    Returns:
+        int: The length of the longest substring without repeating characters.
+    """
+    char_index = {}  
+    max_length = 0
+    start = 0  
+    for end, char in enumerate(s):
+        if char in char_index and char_index[char] >= start:
+            start = char_index[char] + 1
+        char_index[char] = end
+        max_length = max(max_length, end - start + 1)
+    return max_length
+s = "abcabcbb"
+print("Length of longest substring:", length_of_longest_substring(s))

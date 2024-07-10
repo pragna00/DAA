@@ -1,0 +1,20 @@
+def find_kth_missing(arr, k):
+    expected = 1
+    missing_count = 0
+
+    for num in arr:
+        while num > expected:
+            missing_count += 1
+            if missing_count == k:
+                return expected
+            expected += 1
+        expected += 1
+
+    while missing_count < k:
+        expected += 1
+        missing_count += 1
+
+    return expected
+arr = [2, 3, 4, 7, 11]
+k = 5
+print(find_kth_missing(arr, k))

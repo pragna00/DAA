@@ -1,0 +1,4 @@
+def find_max_element(nums):
+    sorted_nums = sorted(nums)
+    max_element = sorted_nums[-1]
+    return max_element

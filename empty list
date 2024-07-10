@@ -1,0 +1,8 @@
+empty_list = []
+single_element_list = [10]
+identical_elements_list = [5, 5, 5, 5, 5]
+negative_numbers_list = [-1, -2, -3, -4, -5]
+print("Empty List:", empty_list)
+print("List with one element:", single_element_list)
+print("List with all identical elements:", identical_elements_list)
+print("List with negative numbers:", negative_numbers_list)

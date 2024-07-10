@@ -1,0 +1,23 @@
+def min_time_to_assemble(a1, a2, t):
+    """
+    Compute the minimum time to assemble a product on two assembly lines.
+    Args:
+        a1 (list): Time taken at each station on assembly line 1.
+        a2 (list): Time taken at each station on assembly line 2.
+        t (list): Transfer time between assembly lines.
+    Returns:
+        int: The minimum time to assemble the product.
+    """
+    n = len(a1)
+    dp1 = [0] * n
+    dp2 = [0] * n
+    dp1[0] = a1[0]
+    dp2[0] = a2[0]
+    for i in range(1, n):
+        dp1[i] = min(dp1[i-1] + a1[i], dp2[i-1] + t[i-1] + a1[i])
+        dp2[i] = min(dp2[i-1] + a2[i], dp1[i-1] + t[i-1] + a2[i])
+    return min(dp1[-1], dp2[-1])
+a1 = [4, 5, 3, 2]
+a2 = [2, 10, 1, 4]
+t = [7, 1, 3]
+print("Minimum time to assemble:", min_time_to_assemble(a1, a2, t))

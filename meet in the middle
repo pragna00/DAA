@@ -1,0 +1,36 @@
+from itertools import combinations
+def meet_in_the_middle(arr, target):
+    """
+    Find the subset whose sum is closest to the target using the Meet in the Middle technique.
+    Args:
+        arr (list): A list of integers.
+        target (int): The target sum.
+    Returns:
+        list: The subset whose sum is closest to the target.
+    """
+    n = len(arr)
+    mid = n // 2
+    left_subsets = []
+    for r in range(mid + 1):
+        for subset in combinations(arr[:mid], r):
+            left_subsets.append(subset)
+    right_subsets = []
+    for r in range(n - mid + 1):
+        for subset in combinations(arr[mid:], r):
+            right_subsets.append(subset)
+    left_sums = [sum(subset) for subset in left_subsets]
+    right_sums = [sum(subset) for subset in right_subsets]
+    closest_sum = float('inf')
+    closest_subset = None
+    for left_sum in left_sums:
+        for right_sum in right_sums:
+            total_sum = left_sum + right_sum
+            if abs(total_sum - target) < abs(closest_sum - target):
+                closest_sum = total_sum
+                closest_subset = (left_subsets[left_sums.index(left_sum)], right_subsets[right_sums.index(right_sum)])
+    return closest_subset
+arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+target = 15
+result = meet_in_the_middle(arr, target)
+print("Closest subset:", result)
+print("Sum:", sum(result[0] + result[1]))
